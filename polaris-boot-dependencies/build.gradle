@@ -1,0 +1,26 @@
+plugins {
+    id 'java-platform'
+}
+
+group 'io.polarisframework.boot'
+version "${polaris_boot_dependencies_version}"
+
+dependencies {
+    api platform("org.springframework.boot:spring-boot-dependencies:${spring_boot_version}")
+    api platform("org.springframework.cloud:spring-cloud-dependencies:${spring_cloud_version}")
+}
+
+javaPlatform {
+    allowDependencies()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'io.polarisframework.boot'
+            artifactId = 'polaris-boot-dependencies'
+            version = "${polaris_boot_dependencies_version}"
+            from components.javaPlatform
+        }
+    }
+}
