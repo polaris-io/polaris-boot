@@ -1,0 +1,28 @@
+allprojects {
+    group 'io.polarisframework.boot'
+}
+
+subprojects {
+    apply plugin: 'idea'
+    apply plugin: 'maven-publish'
+
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+        maven { url 'https://repo.spring.io/snapshot' }
+        maven { url 'https://repo.spring.io/milestone' }
+    }
+
+    publishing {
+        repositories {
+            maven {
+                name = 'GitHubPackages'
+                url = uri('https://maven.pkg.github.com/polaris-io/mvn-repo')
+                credentials {
+                    username = System.getenv('GITHUB_USERNAME')
+                    password = System.getenv('GITHUB_TOKEN')
+                }
+            }
+        }
+    }
+}
