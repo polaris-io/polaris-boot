@@ -8,6 +8,11 @@ version "${polaris_boot_dependencies_version}"
 dependencies {
     api platform("org.springframework.boot:spring-boot-dependencies:${spring_boot_version}")
     api platform("org.springframework.cloud:spring-cloud-dependencies:${spring_cloud_version}")
+    constraints {
+        api project(':polaris-boot-core')
+        api 'org.slf4j:slf4j-log4j12:1.7.30'
+        api 'org.apache.commons:commons-lang3:3.10'
+    }
 }
 
 javaPlatform {
